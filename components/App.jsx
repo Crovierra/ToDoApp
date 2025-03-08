@@ -27,7 +27,7 @@ const App = () => {
 
     const addTask = () =>{
         axios.post('/api/tasks', task)
-        .then(res => setAllTask([...prevValue, res.data]))
+        .then(res => setAllTask([...task, res.data]))
         .catch(err => console.error("Cannot execute addTask :",err))
     }
 

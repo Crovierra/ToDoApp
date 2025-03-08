@@ -16,8 +16,8 @@ const TaskTable = ({taskList, changeStatus, deleteTask, editTaskId, addNewTask})
     const notFinished = "bg-red-500 rounded-2xl py-1 px-2 text-white"
     const finished = "bg-green-500 rounded-2xl py-1 px-2 text-white"
 
-    function handleDelete(index){
-        deleteTask(index)
+    function handleDelete(id){
+        deleteTask(id)
     }
 
   return (
@@ -36,7 +36,7 @@ const TaskTable = ({taskList, changeStatus, deleteTask, editTaskId, addNewTask})
             {taskList.map((item, index) => {
             return (
             <TableRow key={index}>
-            <TableCell className="font-medium">{item ? item._id : 1}</TableCell>
+            <TableCell className="font-medium">{item ? (index + 1) : 1}</TableCell>
             <TableCell className="cursor-pointer" onClick={() => changeStatus(item._id)}><span className={item.status === false ? notFinished : finished}>{item.status === true ? "Completed" : "Pending"}</span></TableCell>
             <TableCell className="max-sm:w-[40%]">{item ? item.title : "Buying new swim wear"}</TableCell>
             <TableCell className="text-right">{item ? item.date : "12/10/2014"}</TableCell>

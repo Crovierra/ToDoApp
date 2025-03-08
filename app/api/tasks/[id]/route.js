@@ -11,8 +11,13 @@ export async function PUT(req, {params}) {
 
 export async function DELETE(req, res){
     await connectDatabase();
-    const { id } = await req.json();
-    await Task.findByIdAndDelete(id);
+    const { _id } = await req.json();
+
+    const deleteTask = await Task.findByIdAndDelete(_id);
+    
+    if(!deleteTask){
+        return NextResponse.json({message: "Task Not Found"})
+    }
     return NextResponse.json({message: "Task Deleted"}, {status: 200})
 
 }
